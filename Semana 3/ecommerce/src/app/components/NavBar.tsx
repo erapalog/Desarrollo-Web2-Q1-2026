@@ -36,14 +36,10 @@ export default function NavBar() {
                             <li className="nav-item">
                                 <Link className="nav-link" href="/informacion">Informacion</Link>
                             </li>
-                            <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Dropdown</a>
-                                <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item" href="#">Link</a></li>
-                                    <li><a className="dropdown-item" href="#">Another link</a></li>
-                                    <li><a className="dropdown-item" href="#">A third link</a></li>
-                                </ul>
+                            <li className="nav-item">
+                                <Link className="nav-link" href="/adminproducto">Administracion de productos</Link>
                             </li>
+                          
                         </ul>
                     </div>
                 </div>

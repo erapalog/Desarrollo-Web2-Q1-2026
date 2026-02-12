@@ -1,3 +1,4 @@
+'use client'
 import React, { useContext, useEffect, useState } from 'react'
 import { Plantilla } from '../modelos/Plantilla'
 import { Producto } from '../modelos/Producto'
@@ -14,44 +15,17 @@ export default function ProviderProducto(props: Plantilla) {
         alert('Producto agregado al carrito')
     }
 
-    useEffect(() => {
-        setProducto([{
-            id: 1,
-            nombreProducto: 'papas',
-            precioProducto: 10,
-            isvProducto: 2,
-            stockProducto: 5,
-            urlImageProducto: ''
-        },
-        {
-            id: 2,
-            nombreProducto: 'repollos',
-            precioProducto: 10,
-            isvProducto: 2,
-            stockProducto: 5,
-            urlImageProducto: ''
-        },
-        {
-            id: 3,
-            nombreProducto: 'lechugas',
-            precioProducto: 10,
-            isvProducto: 2,
-            stockProducto: 5,
-            urlImageProducto: ''
-        },
-        {
-            id: 4,
-            nombreProducto: 'zanahorias',
-            precioProducto: 10,
-            isvProducto: 2,
-            stockProducto: 5,
-            urlImageProducto: ''
-        }])
 
-    }, [])
+    async function obtenerProductos() {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/producto`)
+        const data = await response.json()
+        setProducto(data)
+    }
+
+  
 
     return (
-        <ContextProducto.Provider value={{ producto, carrito, agregarCarrito }}>
+        <ContextProducto.Provider value={{ producto, carrito, agregarCarrito,obtenerProductos }}>
             {props.children}
         </ContextProducto.Provider>
     )

@@ -1,34 +1,37 @@
 'use client'
+import BotonAgregarCarrito from '@/app/components/BotonAgregarCarrito';
+import CardProducto from '@/app/components/CardProducto';
 import { Producto } from '@/app/modelos/Producto';
 import { useProducto } from '@/app/providers/ProviderProducto'
-import React from 'react'
+import { useEffect } from 'react';
 
 export default function page() {
 
-  const {producto,agregarCarrito}= useProducto();
+  const { producto, agregarCarrito,obtenerProductos } = useProducto();
+
+  useEffect(() => {
+    obtenerProductos();
+  }, [])
 
   return (
     <div className='content'>
       <div className='row'>
+
         {
-          producto.map((item:Producto)=>(
+          producto.map((item: Producto) => (
 
-            <div className='col-md-3' key={item.id}>
-              <div className='card'>
-                <img src={item.urlImageProducto} alt="" />
 
-                <div className='card-body'>
-                  <h5>{item.nombreProducto}</h5>
-                  <p>Lps. {item.precioProducto}</p>
-                  <p>Lps. {item.isvProducto}</p>
-                  <p>Lps. {item.stockProducto}</p>
-                </div>
-                <div className='card-footer'>
-                  <button className='btn btn-info' type='button' onClick={()=>agregarCarrito(item)}>Agregar al carrito</button>
-                  <button className='btn btn-danger' type='button'>Eliminar</button>
+              <div className='col-md-3' key={item.id}> <br />
+                <div className='card'>
+                  <div className='card-body'>
+                    <CardProducto {...item}></CardProducto>
+                  </div>
+                  <div className='card-footer'>
+                    <BotonAgregarCarrito {...item}></BotonAgregarCarrito>
+                  </div>
+
                 </div>
               </div>
-            </div>
           ))
         }
       </div>

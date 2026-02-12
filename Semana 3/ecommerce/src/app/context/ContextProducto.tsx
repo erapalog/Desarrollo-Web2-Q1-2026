@@ -7,5 +7,6 @@ import { Producto } from "../modelos/Producto"
 export const ContextProducto= createContext({
     producto: [] as Producto[],
     carrito: [] as Producto[],
-    agregarCarrito: (producto:Producto) =>{}
+    agregarCarrito: (producto:Producto) =>{},
+    obtenerProductos: () =>{}
 })
